@@ -1,0 +1,7 @@
+//Node 2 
+admin.addPeer("enode://779c4b46a3cc47fef2e26fe5be1cefe1910accd4375ebc3c20389049d5d08f80d909b099b9d57a61b58cbd2dd02e3e65ba21f2ec32aef73332ec313d260fee91@54.214.127.186:30302");
+
+//Node 3
+admin.addPeer("enode://22acb2e29af5b96ad99969059d3dab67eaa7443ac090435fce39cb588ff6e9e213f60857f3f192bdb2dbe640767d5dea69f65f0bdd0d9bbb0cf5fe399945d0b8@52.39.250.112:30302");
+
+admin.peers;
