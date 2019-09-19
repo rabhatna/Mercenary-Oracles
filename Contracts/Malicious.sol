@@ -22,14 +22,14 @@ contract Malicious{
 
     function setAttackNode(string node, address addrNode) public setRestrict{
         attackEnode = node;
-        attackAddre = addrNode;
+        attackAddr = addrNode;
     }
 
     function setVictimNode(string node) public setRestrict{
         victimEnode = node;
     }
 
-    function getVictim() public view returns(string) victimRestrict{
+    function getVictim() public victimRestrict view returns(string) {
         return victimEnode;
     }
 
