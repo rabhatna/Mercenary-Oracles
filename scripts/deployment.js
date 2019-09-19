@@ -24,6 +24,6 @@ var binASC = "0x" + contractASCOut.contracts[ 'ASC.sol:ASC' ].bin;
 
 var deployTransationObject = { from: eth.accounts[ 0 ], data: binASC, gas: 1000000 };
 
-var ascInstance = storageContract.new( deployTransationObject );
+var ascInstance = contractASC.new( deployTransationObject );
 
-var ascAddress = eth.getTransactionReceipt( storageInstance.transactionHash );
+var ascAddress = eth.getTransactionReceipt( ascInstance.transactionHash );
