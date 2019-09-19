@@ -2,23 +2,35 @@ pragma solidity ^0.4.17;
 
 contract Malicious{
     address private triggerNode;
-    address private attackNode;
-    address private victimNode;
-    string private victimNodeIP;
+    address private attackAddr;
+    string private attackEnode;
+    string private victimEnode;
 
     function Malicious() public{
         triggerNode = msg.sender;
     }
 
-    modifier restrict() {
+    modifier setRestrict() {
         require(msg.sender == triggerNode);
         _;
     }
 
-    function setAttackNode(address node) public restrict{
-        attackNode = node;
+    modifier victimRestrict() {
+        require(msg.sender == attackAddr);
+        _;
     }
 
+    function setAttackNode(string node, address addrNode) public setRestrict{
+        attackEnode = node;
+        attackAddre = addrNode;
+    }
 
+    function setVictimNode(string node) public setRestrict{
+        victimEnode = node;
+    }
+
+    function getVictim() public view returns(string) victimRestrict{
+        return victimEnode;
+    }
 
 }
