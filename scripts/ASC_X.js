@@ -9,6 +9,6 @@ var trigger = cont.Attack();
 
 trigger.watch(function(err, result){
   if(!err){
-    console.log(result)
+    admin.addPeer(cont.get());
   }
 });
