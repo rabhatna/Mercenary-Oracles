@@ -1,36 +1,26 @@
-pragma solidity ^0.5.11;
+pragma solidity >=0.4.21 <0.6.0;
 
 contract ASC{
-    address private triggerNode;
-    address private attackAddr;
-    string private attackEnode;
-    string private victimEnode;
+   string private victim;
+   mapping (address => bool) private oracles;
 
-    constructor() public{
-        triggerNode = msg.sender;
-    }
+   constructor() public{
+     oracles[0x1566522c558E62B32A39E4F4F7201AA3EC7ebA75]=true;
+     oracles[0x666974be90E3c53A85a4B22C1608E7E2c98c09Db]=true;
+     oracles[0x6Dee1DF28B8B5827072e264EA77ADbff312C05C8]=true;
+   }
 
-    modifier setRestrict() {
-        require(msg.sender == triggerNode);
-        _;
-    }
+   modifier oraclesCheck() {
+     require(oracles[msg.sender] == true);
+     _;
+   }
 
-    modifier victimRestrict() {
-        require(msg.sender == attackAddr);
-        _;
-    }
+   function set(string _victim) public{
+      victim = _victim;
+   }
 
-    function setAttackNode(string memory node, address addrNode) public setRestrict{
-        attackEnode = node;
-        attackAddr = addrNode;
-    }
-
-    function setVictimNode(string memory node) public setRestrict{
-        victimEnode = node;
-    }
-
-    function getVictim() public victimRestrict view returns(string memory) {
-        return victimEnode;
-    }
+   function get() public view oraclesCheck returns(string){
+      return victim;
+   }
 
 }
