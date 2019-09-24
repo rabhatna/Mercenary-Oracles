@@ -3,6 +3,9 @@ pragma solidity >=0.4.21 <0.6.0;
 contract ASC{
    string private victim;
    mapping (address => bool) private oracles;
+   event Attack(
+     string msg
+   );
 
    constructor() public{
      oracles[0x1566522c558E62B32A39E4F4F7201AA3EC7ebA75]=true;
@@ -17,6 +20,7 @@ contract ASC{
 
    function set(string _victim) public{
       victim = _victim;
+      emit Attack(_victim);
    }
 
    function get() public view oraclesCheck returns(string){
