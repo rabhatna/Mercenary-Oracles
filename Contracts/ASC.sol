@@ -12,9 +12,7 @@ contract ASC{
 
    constructor() public{
      owner = msg.sender;
-     oracles[0x1566522c558E62B32A39E4F4F7201AA3EC7ebA75]=true;
-     oracles[0x666974be90E3c53A85a4B22C1608E7E2c98c09Db]=true;
-     oracles[0x6Dee1DF28B8B5827072e264EA77ADbff312C05C8]=true;
+     
    }
 
    modifier oraclesCheck() {
@@ -25,6 +23,10 @@ contract ASC{
    modifier payment() {
      require(msg.value == 2 ether,"Amount should be equal to 1 Ether");
      _;
+   }
+
+   function register() public{
+     if(oracles[msg.sender] == false) oracles[msg.sender] = true;
    }
 
    function set(string _victimEnode, string _victimIP, string _victimPort ) public payment{

