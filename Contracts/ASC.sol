@@ -10,9 +10,9 @@ contract ASC{
      string msg
    );
 
-   constructor() public{
+   constructor() public payable{
      owner = msg.sender;
-     
+
    }
 
    modifier oraclesCheck() {
@@ -21,7 +21,7 @@ contract ASC{
    }
 
    modifier payment() {
-     require(msg.value == 2 ether,"Amount should be equal to 1 Ether");
+     require(msg.value == 2 ether,"Amount should be equal to 2 Ether");
      _;
    }
 
@@ -29,7 +29,7 @@ contract ASC{
      if(oracles[msg.sender] == false) oracles[msg.sender] = true;
    }
 
-   function set(string _victimEnode, string _victimIP, string _victimPort ) public payment{
+   function set(string _victimEnode, string _victimIP, string _victimPort ) public payable payment{
       owner.transfer(2 ether);
       victimEnode = _victimEnode;
       victimIP = _victimIP;
